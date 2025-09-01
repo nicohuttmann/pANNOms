@@ -1,0 +1,20 @@
+Package: pANNOms
+Type: Package
+Title: Package for protein annotation 
+Version: 1.0.0
+Authors@R: c(
+  person("Nico", "Hüttmann", , "nico.huettmann@embl.de", role = c("aut", "cre"),
+         comment = c(ORCID = "YOUR-ORCID-ID"))
+  )         
+Description: Inspect and modify DIA MS data 
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+URL: https://github.com/nicohuttmann/pANNOms, https://nicohuttmann.github.io/pANNOms/
+BugReports: https://github.com/nicohuttmann/pANNOms/issues
+Suggests: 
+    httr2
+VignetteBuilder: knitr
+Imports:
+    tidyverse
+RoxygenNote: 7.3.1
