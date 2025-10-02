@@ -294,7 +294,7 @@ get_UniProt_data_1o <- function(accession,
                       "format=tsv", 
                       "&fields=", 
                       paste(fields, collapse = "%2C"), 
-                      "&query=%28model_organism%3A", 
+                      "&query=%28taxonomy_id%3A", 
                       taxon_id[1], "%29")
   
   data_download <- vroom::vroom(query_url, 
