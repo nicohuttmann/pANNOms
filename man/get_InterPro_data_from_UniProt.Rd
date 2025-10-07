@@ -7,7 +7,7 @@
 get_InterPro_data_from_UniProt(
   accession,
   data_UniProt = NULL,
-  taxon_id = NULL,
+  taxon_ids = NULL,
   max.query = 100,
   keep.empty = F,
   separate.multiple.sites = T,
@@ -22,7 +22,7 @@ get_InterPro_data_from_UniProt(
 \item{data_UniProt}{(optional) predownloaded UniProt data with 
 download_UniProt_data() or download_UniProt_data_1o()}
 
-\item{taxon_id}{}
+\item{taxon_ids}{}
 
 \item{max.query}{maximum}
 

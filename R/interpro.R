@@ -3,7 +3,7 @@
 #' @param accession 
 #' @param data_UniProt (optional) predownloaded UniProt data with 
 #' download_UniProt_data() or download_UniProt_data_1o()
-#' @param taxon_id 
+#' @param taxon_ids 
 #' @param max.query maximum
 #' @param keep.empty Keep Ids without data?
 #' @param separate.multiple.sites split disconnected features into multiple rows
@@ -19,7 +19,7 @@
 #' }
 get_InterPro_data_from_UniProt <- function(accession, 
                                            data_UniProt = NULL, 
-                                           taxon_id = NULL, 
+                                           taxon_ids = NULL, 
                                            max.query = 100, 
                                            keep.empty = F, 
                                            separate.multiple.sites = T, 
@@ -32,12 +32,12 @@ get_InterPro_data_from_UniProt <- function(accession,
   
   # Get UniProt annotations 
   if (is.null(data_UniProt)) {
-    if (!is.null(taxon_id)) {
+    if (!is.null(taxon_ids)) {
       data_UniProt <- accession_query %>% 
         str_extract("^.+?(?=;|$)") %>% 
-        get_UniProt_data_1o(fields = c("uniparc_id", 
+        get_UniProt_data_o(fields = c("uniparc_id", 
                                        "sequence"), 
-                            taxon_id = taxon_id)
+                            taxon_ids = taxon_ids)
     } else {
       data_UniProt <- accession_query %>% 
         str_extract("^.+?(?=;|$)") %>% 

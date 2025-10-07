@@ -2,12 +2,30 @@
 
 library(tidyverse)
 library(pOmics3)
+library(pANNOms)
 
 
-data_UniProt <- get_UniProt_data_1o(taxon_id = 83333)
 
-data_UniParc <- get_InterPro_data_from_UniProt(data_UniProt$Entry, taxon_id = 83333)
+fasta <- Biostrings::readAAStringSet("dev/uniprotkb_ecoli_AND_model_organism_8333_2024_06_06.fasta")
 
+proteins <- names(fasta) %>% 
+  str_extract("(?<=^..\\|).+?(?=\\|)")
+
+taxons <- names(fasta) %>% 
+  str_extract("(?<=OX=).+?(?= )") %>% 
+  unique() %>% 
+  as.numeric()
+
+
+data_UniProt <- get_UniProt_data_o(accession = proteins, 
+                                   fields = c("uniparc_id", 
+                                               "sequence"), 
+                                    taxon_id = taxons)
+
+data_UniParc <- get_InterPro_data_from_UniProt(data_UniProt$Entry, 
+                                               taxon_ids = taxons)
+
+saveRDS(data_UniParc, "dev/InterPro.Rds")
 
 library(tidyverse)
 library(pOmics3)

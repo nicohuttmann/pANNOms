@@ -342,6 +342,9 @@ get_UniProt_data_o <- function(accession,
   # if (length(taxon_id) > 1) 
   #   warning("More than one taxon_id provided, only using the first one.")
   
+  # Add accession as field
+  if (!"accession" %in% fields) fields <- c("accession", fields)
+  
   data_download <- purrr::map(
     taxon_ids, 
     \(x) {
@@ -351,7 +354,7 @@ get_UniProt_data_o <- function(accession,
                           "format=tsv", 
                           "&fields=", 
                           paste(fields, collapse = "%2C"), 
-                          "&query=%28model_organism%3A", 
+                          "&query=%28taxonomy_id%3A", 
                           x, "%29")
       
       vroom::vroom(query_url, 
